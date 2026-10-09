@@ -1,10 +1,8 @@
 package tn.esprit.naamaselmi4cce11.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 
@@ -13,6 +11,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Maintenance {
 
     @Id
@@ -24,4 +24,6 @@ public class Maintenance {
     private LocalDate dateFin;
 
     private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vehicule vehicule;
 }

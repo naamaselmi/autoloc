@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,4 +28,11 @@ public class Contrat {
     private BigDecimal montantTotal;
 
     private boolean valide;
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Paiement> paiements = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Reservation reservation;
+
 }
